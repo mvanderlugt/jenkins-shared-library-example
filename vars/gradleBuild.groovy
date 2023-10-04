@@ -1,39 +1,40 @@
-def call( Map pipelineParams )
-{
-    Map defaultParams = [
-        name: "Build",
-        tasks: "clean build",
-        useWrapper: true
-    ]
+class BuildGradleStage {
+    private final Script script
 
-    params = defaultParams + pipelineParams
+    BuildGradleStage(Script script) {
+        this.script = script
+    }
 
-    gradleCommand = params.useWrapper ? "./gradlew" : "gradle"
+    void execute(String name = "Build", String tasks = "clean build", boolean useWrapper = true) {
+        params = defaultParams + pipelineParams
 
-    stage( params.name ) {
-        try
-        {
-            sh "${gradleCommand} ${params.tasks}"
-            stash includes: 'build/libs/*.jar', name: 'gradleLibs'
-        }
-        finally
-        {
-            junit "build/test-results/test/*.xml"
-            publishHTML( [
-                allowMissing: true,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'build/reports/tests/test',
-                reportFiles: 'index.html',
-                reportName: "Unit Test Report"
-            ] )
-            jacoco(
-                execPattern: "build/jacoco/*.exec",
-                classPattern: "build/classes/kotlin/main",
-                sourcePattern: "src/main/kotlin",
-                sourceInclusionPattern: "**/*.kt",
-                exclusionPattern: "src/test"
-            )
+        gradleCommand = useWrapper ? "./gradlew" : "gradle"
+
+        script.stage( name ) {
+            try
+            {
+                script.sh "${gradleCommand} ${tasks}"
+                script.stash includes: 'build/libs/*.jar', name: 'gradleLibs'
+            }
+            finally
+            {
+                script.junit "build/test-results/test/*.xml"
+                script.publishHTML( [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'build/reports/tests/test',
+                    reportFiles: 'index.html',
+                    reportName: "Unit Test Report"
+                ] )
+                script.jacoco(
+                    execPattern: "build/jacoco/*.exec",
+                    classPattern: "build/classes/kotlin/main",
+                    sourcePattern: "src/main/kotlin",
+                    sourceInclusionPattern: "**/*.kt",
+                    exclusionPattern: "src/test"
+                )
+            }
         }
     }
 }

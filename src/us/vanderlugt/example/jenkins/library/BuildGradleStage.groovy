@@ -1,3 +1,5 @@
+package us.vanderlugt.example.jenkins.library
+
 class BuildGradleStage {
     private final Script script
 

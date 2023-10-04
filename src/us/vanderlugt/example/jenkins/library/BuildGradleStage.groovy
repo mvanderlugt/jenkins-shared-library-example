@@ -6,8 +6,6 @@ class BuildGradleStage {
     }
 
     void execute(String name = "Build", String tasks = "clean build", boolean useWrapper = true) {
-        params = defaultParams + pipelineParams
-
         gradleCommand = useWrapper ? "./gradlew" : "gradle"
 
         script.stage( name ) {

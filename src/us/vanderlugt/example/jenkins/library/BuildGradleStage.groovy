@@ -6,7 +6,7 @@ class BuildGradleStage {
     }
 
     void execute(String name = "Build", String tasks = "clean build", boolean useWrapper = true) {
-        var gradleCommand = useWrapper ? "./gradlew" : "gradle"
+        String gradleCommand = useWrapper ? "./gradlew" : "gradle"
 
         script.stage( name ) {
             try

@@ -11,7 +11,6 @@ class DockerAgent
 
     def execute( def buildAgent, Closure pipeline )
     {
-        buildAgent.println(this.binding.variables)
         docker.image(image, pipeline)
     }
 }

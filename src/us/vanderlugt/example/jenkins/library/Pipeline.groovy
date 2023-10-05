@@ -6,7 +6,7 @@ class Pipeline implements Serializable
     private final def script
 
     private PipelineAgent agent
-    private List<PipelineStep> steps
+    private List<PipelineStep> steps = new LinkedList<>()
 
     private Pipeline( script )
     {

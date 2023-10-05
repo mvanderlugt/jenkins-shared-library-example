@@ -14,9 +14,7 @@ def byLabel( String label, Closure pipeline )
 
 def docker( String image, Closure pipeline )
 {
-    docker.image( image ).withRun {
-        pipeline()
-    }
+    new DockerAgent(image).execute(steps, pipeline)
 }
 
 def kubernetes( String buildProfile, Closure pipeline )

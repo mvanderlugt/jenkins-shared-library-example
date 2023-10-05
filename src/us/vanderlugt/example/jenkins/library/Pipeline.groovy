@@ -1,6 +1,6 @@
 package us.vanderlugt.example.jenkins.library
 
-class Pipeline implements Serializable
+final class Pipeline implements Serializable
 {
     private static Pipeline instance
     private final def script

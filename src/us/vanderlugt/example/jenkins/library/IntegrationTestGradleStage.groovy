@@ -19,8 +19,8 @@ class IntegrationTestGradleStage
         }
         finally
         {
-            junit "build/test-results/integrationTest/*.xml"
-            publishHTML( [
+            script.junit "build/test-results/integrationTest/*.xml"
+            script.publishHTML( [
                 allowMissing: true,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,

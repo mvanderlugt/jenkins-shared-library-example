@@ -11,6 +11,6 @@ class DockerAgent
 
     def execute( def buildAgent, Closure pipeline )
     {
-        docker.image(image, pipeline)
+        dockerNode.image(image, pipeline)
     }
 }

@@ -22,5 +22,5 @@ def docker( String image, Closure pipeline )
 
 def kubernetes( String buildProfile, Closure pipeline )
 {
-    new KubernetesAgent( podSpec: buildProfile ).execute( this, pipeline )
+    new KubernetesAgent( podSpec = buildProfile ).execute( this, pipeline )
 }

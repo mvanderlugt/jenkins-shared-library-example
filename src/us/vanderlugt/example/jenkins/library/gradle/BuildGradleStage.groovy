@@ -6,7 +6,7 @@ class BuildGradleStage {
 
     BuildGradleStage(String name = "Build", List<String> tasks = ["clean", "build"], boolean useWrapper = true) {
         this.name = name
-        this.gradleCommand = new GradleCommand(tasks, useWrapper)
+        this.gradleCommand = new GradleCommand(tasks: tasks, useWrapper: useWrapper)
     }
 
     void execute(steps) {

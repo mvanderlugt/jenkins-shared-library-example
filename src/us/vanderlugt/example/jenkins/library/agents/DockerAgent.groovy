@@ -2,12 +2,7 @@ package us.vanderlugt.example.jenkins.library.agents
 
 class DockerAgent
 {
-    private final String image
-
-    DockerAgent( String image )
-    {
-        this.image = image
-    }
+    private String image
 
     void execute( steps, Closure pipeline )
     {

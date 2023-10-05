@@ -9,7 +9,7 @@ class IntegrationTestGradleStage
         List<String> tasks = ["integrationTest"],
         boolean useWrapper = true) {
         this.name = name
-        this.gradleCommand = new GradleCommand(tasks, useWrapper)
+        this.gradleCommand = new GradleCommand(tasks: tasks, useWrapper: useWrapper)
     }
 
     void execute(steps) {

@@ -2,21 +2,10 @@ package us.vanderlugt.example.jenkins.library.agents
 
 class KubernetesAgent
 {
-    private final String cloud
-    private final String namespace
-    private final String defaultContainer
-    private final String podSpec
-
-    KubernetesAgent( String cloud = "kubernetes",
-        String namespace = "jenkins-agents",
-        String defaultContainer = "jdk",
-        String podSpec = "jdk-17" )
-    {
-        this.cloud = cloud
-        this.namespace = namespace
-        this.defaultContainer = defaultContainer
-        this.podSpec = podSpec
-    }
+    private String cloud = "kubernetes"
+    private String namespace = "jenkins-agents"
+    private String defaultContainer = "jdk"
+    private String podSpec = "jdk-17"
 
     void execute( steps, Closure pipeline )
     {
@@ -24,7 +13,7 @@ class KubernetesAgent
         steps.podTemplate( cloud: cloud,
             namespace: namespace,
             yaml: yaml ) {
-            steps.container(defaultContainer) {
+            steps.container( defaultContainer ) {
                 pipeline()
             }
         }

@@ -2,14 +2,8 @@ package us.vanderlugt.example.jenkins.library
 
 class ProjectVersion
 {
-    private final String candidateVersionPrefix
-    private final String pullRequestVersionPrefix
-
-    ProjectVersion( String candidateVersionPrefix = "dev-",
-        String pullRequestVersionPrefix = "dev-" )
-    {
-        this.candidateVersionPrefix = candidateVersionPrefix
-    }
+    private String candidateVersionPrefix = "dev-"
+    private String pullRequestVersionPrefix = "dev-"
 
     String getImageTag( env )
     {

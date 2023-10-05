@@ -17,10 +17,10 @@ def byLabel( String label, Closure pipeline )
 
 def docker( String image, Closure pipeline )
 {
-    new DockerAgent( image ).execute( this, pipeline )
+    new DockerAgent( image: image ).execute( this, pipeline )
 }
 
 def kubernetes( String buildProfile, Closure pipeline )
 {
-    new KubernetesAgent( podSpec = buildProfile ).execute( this, pipeline )
+    new KubernetesAgent( podSpec: buildProfile ).execute( this, pipeline )
 }

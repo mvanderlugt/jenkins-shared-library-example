@@ -20,11 +20,11 @@ class KubernetesAgent
 
     void execute( steps, Closure pipeline )
     {
-        def podSpec = readYaml( libraryResource( "us/vanderlugt/example/jenkins/library/agents/${podSpec}-agent.yaml" ) )
+        def yaml = steps.libraryResource( "us/vanderlugt/example/jenkins/library/agents/${podSpec}-agent.yaml" )
         steps.podTemplate( cloud: cloud,
             namespace: namespace,
             defaultContainer: defaultContainer,
-            yaml: podSpec ) {
+            yaml: yaml ) {
             pipeline()
         }
     }

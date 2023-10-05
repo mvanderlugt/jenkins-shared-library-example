@@ -1,3 +1,5 @@
+import us.vanderlugt.example.jenkins.library.agents.DockerAgent
+
 def anyAvailable( Closure pipeline )
 {
     node {

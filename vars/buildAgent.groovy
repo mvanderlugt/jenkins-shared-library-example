@@ -8,6 +8,7 @@ def anyAvailable(Closure pipeline)
 
 def docker( String image, Closure pipeline )
 {
+    println(node)
     println(this.getBinding().variables)
     println(this.class.methods.collect { it.name })
     println(steps.class.methods.collect { it.name })

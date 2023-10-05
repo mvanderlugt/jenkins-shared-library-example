@@ -23,7 +23,6 @@ class KubernetesAgent
         def yaml = steps.libraryResource( "us/vanderlugt/example/jenkins/library/agents/${podSpec}-agent.yaml" )
         steps.podTemplate( cloud: cloud,
             namespace: namespace,
-            defaultContainer: defaultContainer,
             yaml: yaml ) {
             steps.container(defaultContainer) {
                 pipeline()

@@ -18,7 +18,17 @@ class Pipeline implements Serializable
         agent.execute( script ) {
             for( PipelineStep step : steps )
             {
-                step.execute( script )
+                if( step instanceof PipelineStage )
+                {
+                    script.stage( step.name() ) {
+                        step.execute( script )
+                    }
+                }
+                else
+                {
+                    step.execute( script )
+
+                }
             }
         }
     }

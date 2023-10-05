@@ -2,18 +2,25 @@ package us.vanderlugt.example.jenkins.library.gradle
 
 import us.vanderlugt.example.jenkins.library.PipelineStage
 
-class BuildGradleStage extends PipelineStage
+class BuildGradleStage implements PipelineStage
 {
+    private final String name
     private final GradleCommand gradleCommand
 
     BuildGradleStage( String name = "Build", List<String> tasks = ["clean", "build"], boolean useWrapper = true )
     {
-        super( name )
+        this.name = name
         this.gradleCommand = new GradleCommand( tasks: tasks, useWrapper: useWrapper )
     }
 
     @Override
-    void executeStage( script )
+    String name()
+    {
+        return name
+    }
+
+    @Override
+    void execute( script )
     {
         try
         {

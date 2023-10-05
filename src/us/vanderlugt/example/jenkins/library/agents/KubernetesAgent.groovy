@@ -25,7 +25,9 @@ class KubernetesAgent
             namespace: namespace,
             defaultContainer: defaultContainer,
             yaml: yaml ) {
-            pipeline()
+            steps.container(defaultContainer) {
+                pipeline()
+            }
         }
     }
 }

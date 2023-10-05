@@ -13,7 +13,7 @@ class BuildGradleStage {
         steps.stage( name ) {
             try
             {
-                gradleCommand.execute(script)
+                gradleCommand.execute(steps)
                 steps.stash includes: 'build/libs/*.jar', name: 'gradleLibs'
             }
             finally

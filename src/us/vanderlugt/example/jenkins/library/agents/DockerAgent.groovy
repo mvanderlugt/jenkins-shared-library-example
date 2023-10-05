@@ -9,9 +9,9 @@ class DockerAgent
         this.image = image
     }
 
-    def execute( def script, Closure pipeline )
+    def execute( def buildAgent, Closure pipeline )
     {
-        script.println(script.class.methods.collect { it.name })
-        script.docker.image(image, pipeline)
+        buildAgent.println(this.binding.variables)
+        docker.image(image, pipeline)
     }
 }

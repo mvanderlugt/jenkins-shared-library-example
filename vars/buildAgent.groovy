@@ -8,6 +8,7 @@ def anyAvailable(Closure pipeline)
 
 def docker( String image, Closure pipeline )
 {
+    println(this.binding.variables)
     new DockerAgent( image ).execute( this, pipeline )
 }
 

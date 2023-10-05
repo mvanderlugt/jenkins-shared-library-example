@@ -6,9 +6,9 @@ def any(Closure pipeline)
     node pipeline
 }
 
-def docker( String image )
+def docker( String image, Closure pipeline )
 {
-    new DockerAgent( image ).define( this )
+    new DockerAgent( image ).execute( this, pipeline )
 }
 
 def kubernetes( String buildProfile )

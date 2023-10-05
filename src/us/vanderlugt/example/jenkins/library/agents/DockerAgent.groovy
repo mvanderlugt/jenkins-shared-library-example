@@ -9,12 +9,8 @@ class DockerAgent
         this.image = image
     }
 
-    def define( Script script )
+    def execute( Script script, Closure pipeline )
     {
-        script.agent {
-            docker {
-                image this.image
-            }
-        }
+        script.docker.image(image, pipeline)
     }
 }

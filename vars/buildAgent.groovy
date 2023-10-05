@@ -1,26 +1,24 @@
+import us.vanderlugt.example.jenkins.library.Pipeline
 import us.vanderlugt.example.jenkins.library.agents.DockerAgent
 import us.vanderlugt.example.jenkins.library.agents.KubernetesAgent
+import us.vanderlugt.example.jenkins.library.agents.NodeLabelAgent
 
-def anyAvailable( Closure pipeline )
+def anyAvailable()
 {
-    node {
-        pipeline()
-    }
+    Pipeline.getInstance().agent = new NodeLabelAgent()
 }
 
-def byLabel( String label, Closure pipeline )
+def byLabel( String label )
 {
-    node( label ) {
-        pipeline()
-    }
+    Pipeline.getInstance().agent = new NodeLabelAgent( label: label )
 }
 
-def docker( String image, Closure pipeline )
+def docker( String image )
 {
-    new DockerAgent( image: image ).execute( this, pipeline )
+    Pipeline.getInstance().agent = new DockerAgent( image: image )
 }
 
-def kubernetes( String buildProfile, Closure pipeline )
+def kubernetes( String buildProfile )
 {
-    new KubernetesAgent( podSpec: buildProfile ).execute( this, pipeline )
+    Pipeline.getInstance().agent = new KubernetesAgent( podSpec: buildProfile )
 }

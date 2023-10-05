@@ -2,14 +2,14 @@ package us.vanderlugt.example.jenkins.library.agents
 
 import us.vanderlugt.example.jenkins.library.PipelineAgent
 
-class DockerAgent implements PipelineAgent
+class NodeLabelAgent implements PipelineAgent
 {
-    private String image
+    private String label = ""
 
     @Override
     void execute( script, Closure pipeline )
     {
-        script.docker.image( image ).withRun {
+        script.node(label) {
             pipeline()
         }
     }

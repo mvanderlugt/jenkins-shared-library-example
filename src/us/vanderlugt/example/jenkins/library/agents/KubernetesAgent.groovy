@@ -1,19 +1,22 @@
 package us.vanderlugt.example.jenkins.library.agents
 
-class KubernetesAgent
+import us.vanderlugt.example.jenkins.library.PipelineAgent
+
+class KubernetesAgent implements PipelineAgent
 {
     private String cloud = "kubernetes"
     private String namespace = "jenkins-agents"
     private String defaultContainer = "jdk"
     private String podSpec = "jdk-17"
 
-    void execute( steps, Closure pipeline )
+    @Override
+    void execute( script, Closure pipeline )
     {
-        def yaml = steps.libraryResource( "us/vanderlugt/example/jenkins/library/agents/${podSpec}-agent.yaml" )
-        steps.podTemplate( cloud: cloud,
+        def yaml = script.libraryResource( "us/vanderlugt/example/jenkins/library/agents/${podSpec}-agent.yaml" )
+        script.podTemplate( cloud: cloud,
             namespace: namespace,
             yaml: yaml ) {
-            steps.container( defaultContainer ) {
+            script.container( defaultContainer ) {
                 pipeline()
             }
         }

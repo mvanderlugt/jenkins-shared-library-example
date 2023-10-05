@@ -1,13 +1,18 @@
 package us.vanderlugt.example.jenkins.library.gradle
 
-class GradleCommand
+class GradleCommand implements Serializable
 {
     private List<String> tasks
     private boolean useWrapper
+    private List<String> flags = [
+        "--no-daemon",
+        "--refresh-dependencies",
+        "--stacktrace"
+    ]
 
-    void execute( steps )
+    void execute( script )
     {
-        steps.sh "${gradleCommand} ${tasks.join( " " )}"
+        script.sh "${gradleCommand} ${flags.join(" ")} ${tasks.join( " " )}"
     }
 
     private String getGradleCommand()

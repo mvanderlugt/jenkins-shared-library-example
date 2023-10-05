@@ -1,6 +1,6 @@
 package us.vanderlugt.example.jenkins.library
 
-class ProjectVersion
+class ProjectVersion implements Serializable
 {
     private String candidateVersionPrefix = "dev-"
     private String pullRequestVersionPrefix = "dev-"

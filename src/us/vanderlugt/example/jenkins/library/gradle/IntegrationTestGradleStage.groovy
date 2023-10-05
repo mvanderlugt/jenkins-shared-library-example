@@ -1,6 +1,8 @@
 package us.vanderlugt.example.jenkins.library.gradle
 
-class IntegrationTestGradleStage
+import us.vanderlugt.example.jenkins.library.PipelineStage
+
+class IntegrationTestGradleStage implements PipelineStage
 {
     private final String name
     private final GradleCommand gradleCommand
@@ -12,15 +14,16 @@ class IntegrationTestGradleStage
         this.gradleCommand = new GradleCommand(tasks: tasks, useWrapper: useWrapper)
     }
 
-    void execute(steps) {
+    @Override
+    void execute(script) {
         try
         {
-            gradleCommand.execute(steps)
+            gradleCommand.execute(script)
         }
         finally
         {
-            steps.junit "build/test-results/integrationTest/*.xml"
-            steps.publishHTML( [
+            script.junit "build/test-results/integrationTest/*.xml"
+            script.publishHTML( [
                 allowMissing: true,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,

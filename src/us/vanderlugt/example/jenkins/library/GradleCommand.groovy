@@ -1,0 +1,23 @@
+package us.vanderlugt.example.jenkins.library
+
+class GradleCommand
+{
+    private final List<String> tasks
+    private final boolean useWrapper
+
+    GradleCommand( List<String> tasks, boolean useWrapper = true )
+    {
+        this.tasks = tasks
+        this.useWrapper = useWrapper
+    }
+
+    void execute( Script script )
+    {
+        script.sh "${gradleCommand} ${tasks.join( " " )}"
+    }
+
+    private String getGradleCommand()
+    {
+        return useWrapper ? "./gradlew" : "gradle"
+    }
+}

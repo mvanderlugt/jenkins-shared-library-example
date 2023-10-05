@@ -1,19 +1,19 @@
 package us.vanderlugt.example.jenkins.library
 
 class BuildGradleStage {
-    private final Script script
+    private final String name
+    private final GradleCommand gradleCommand
 
-    BuildGradleStage(Script script) {
-        this.script = script
+    BuildGradleStage(String name = "Build", List<String> tasks = ["clean", "build"], boolean useWrapper = true) {
+        this.name = name
+        this.gradleCommand = new GradleCommand(tasks, useWrapper)
     }
 
-    void execute(String name = "Build", String tasks = "clean build", boolean useWrapper = true) {
-        String gradleCommand = useWrapper ? "./gradlew" : "gradle"
-
+    void execute(Script script) {
         script.stage( name ) {
             try
             {
-                script.sh "${gradleCommand} ${tasks}"
+                gradleCommand.execute(script)
                 script.stash includes: 'build/libs/*.jar', name: 'gradleLibs'
             }
             finally

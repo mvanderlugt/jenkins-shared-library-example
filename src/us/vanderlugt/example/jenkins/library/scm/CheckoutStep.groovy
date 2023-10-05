@@ -7,6 +7,6 @@ class CheckoutStep implements PipelineStep
     @Override
     void execute( script )
     {
-        script.checkout()
+        script.checkout script.scm
     }
 }

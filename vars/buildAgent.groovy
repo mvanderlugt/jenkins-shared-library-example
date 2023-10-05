@@ -1,4 +1,5 @@
 import us.vanderlugt.example.jenkins.library.agents.DockerAgent
+import us.vanderlugt.example.jenkins.library.agents.KubernetesAgent
 
 def anyAvailable( Closure pipeline )
 {
@@ -16,16 +17,10 @@ def byLabel( String label, Closure pipeline )
 
 def docker( String image, Closure pipeline )
 {
-    new DockerAgent(image).execute(this, pipeline)
+    new DockerAgent( image ).execute( this, pipeline )
 }
 
 def kubernetes( String buildProfile, Closure pipeline )
 {
-    def podSpec = readYaml( libraryResource( "us/vanderlugt/example/jenkins/library/agents/${buildProfile}-agent.yaml" ) )
-    podTemplate( cloud = "kubernetes",
-        namespace = "jenkins-agents",
-        defaultContainer = "jdk",
-        yaml = podSpec ) {
-        pipeline()
-    }
+    new KubernetesAgent( podSpec: buildProfile ).execute( this, pipeline )
 }

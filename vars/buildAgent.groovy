@@ -6,12 +6,24 @@ def anyAvailable(Closure pipeline)
     node pipeline
 }
 
-def docker( String image, Closure pipeline )
+def byLabel(String label, Closure pipeline)
 {
-    new DockerAgent( image ).execute( this, pipeline )
+    node(label, pipeline)
 }
 
-def kubernetes( String buildProfile )
+def docker( String image, Closure pipeline )
 {
-    new KubernetesAgent( podSpec = buildProfile ).define( this )
+    docker.image(image, pipeline)
+}
+
+def kubernetes( String buildProfile, Closure pipeline )
+{
+//    script.agent {
+//        kubernetes {
+//            cloud this.cloud
+//            namespace this.namespace
+//            defaultContainer this.defaultContainer
+//            script.yaml libraryResource("us/vanderlugt/example/jenkins/library/agents/${podSpec}-agent.yaml")
+//        }
+//    }
 }

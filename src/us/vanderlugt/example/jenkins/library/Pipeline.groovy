@@ -13,6 +13,25 @@ class Pipeline implements Serializable
         this.script = script
     }
 
+    private void executeInternal()
+    {
+        agent.execute( script ) {
+            for( PipelineStep step : steps )
+            {
+                step.execute( script )
+            }
+        }
+    }
+
+    private static Pipeline getInstance()
+    {
+        if( instance == null )
+        {
+            throw new IllegalStateException( "Pipeline must be initialized first" )
+        }
+        return instance
+    }
+
     static Pipeline initialize( script )
     {
         if( instance == null )
@@ -23,15 +42,6 @@ class Pipeline implements Serializable
         {
             script.echo "WARNING: Pipeline re-initialized"
             instance = new Pipeline( script )
-        }
-        return instance
-    }
-
-    static Pipeline getInstance()
-    {
-        if( instance == null )
-        {
-            throw new IllegalStateException( "Pipeline must be initialized first" )
         }
         return instance
     }
@@ -50,13 +60,8 @@ class Pipeline implements Serializable
         return instance
     }
 
-    void execute()
+    static void execute()
     {
-        agent.execute( script ) {
-            for( PipelineStep step : steps )
-            {
-                step.execute( script )
-            }
-        }
+        getInstance().executeInternal()
     }
 }

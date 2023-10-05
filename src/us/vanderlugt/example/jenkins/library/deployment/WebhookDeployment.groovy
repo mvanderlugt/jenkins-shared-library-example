@@ -2,13 +2,16 @@ package us.vanderlugt.example.jenkins.library.deployment
 
 import us.vanderlugt.example.jenkins.library.PipelineStage
 
-class WebhookDeployment implements PipelineStage
+class WebhookDeployment extends PipelineStage
 {
-    @Override
-    void execute( script )
+    WebhookDeployment()
     {
-        script.stage( "Deployment" ) {
-            script.echo "Waiting for CD to complete deployment"
-        }
+        super( "Deployment" )
+    }
+
+    @Override
+    void executeStage( script )
+    {
+        script.echo "Waiting for CD to complete deployment"
     }
 }

@@ -12,15 +12,15 @@ class IntegrationTestGradleStage
         this.gradleCommand = new GradleCommand(tasks, useWrapper)
     }
 
-    void execute(Script script) {
+    void execute(steps) {
         try
         {
-            gradleCommand.execute(script)
+            gradleCommand.execute(steps)
         }
         finally
         {
-            script.junit "build/test-results/integrationTest/*.xml"
-            script.publishHTML( [
+            steps.junit "build/test-results/integrationTest/*.xml"
+            steps.publishHTML( [
                 allowMissing: true,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,

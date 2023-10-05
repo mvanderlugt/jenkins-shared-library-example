@@ -9,17 +9,17 @@ class BuildGradleStage {
         this.gradleCommand = new GradleCommand(tasks, useWrapper)
     }
 
-    void execute(Script script) {
-        script.stage( name ) {
+    void execute(steps) {
+        steps.stage( name ) {
             try
             {
                 gradleCommand.execute(script)
-                script.stash includes: 'build/libs/*.jar', name: 'gradleLibs'
+                steps.stash includes: 'build/libs/*.jar', name: 'gradleLibs'
             }
             finally
             {
-                script.junit "build/test-results/test/*.xml"
-                script.publishHTML( [
+                steps.junit "build/test-results/test/*.xml"
+                steps.publishHTML( [
                     allowMissing: true,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
@@ -27,7 +27,7 @@ class BuildGradleStage {
                     reportFiles: 'index.html',
                     reportName: "Unit Test Report"
                 ] )
-                script.jacoco(
+                steps.jacoco(
                     execPattern: "build/jacoco/*.exec",
                     classPattern: "build/classes/kotlin/main",
                     sourcePattern: "src/main/kotlin",

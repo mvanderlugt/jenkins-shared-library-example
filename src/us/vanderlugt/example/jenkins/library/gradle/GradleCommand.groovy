@@ -11,9 +11,9 @@ class GradleCommand
         this.useWrapper = useWrapper
     }
 
-    void execute( Script script )
+    void execute( steps )
     {
-        script.sh "${gradleCommand} ${tasks.join( " " )}"
+        steps.sh "${gradleCommand} ${tasks.join( " " )}"
     }
 
     private String getGradleCommand()

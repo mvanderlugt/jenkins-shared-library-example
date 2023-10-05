@@ -9,6 +9,7 @@ def anyAvailable(Closure pipeline)
 def docker( String image, Closure pipeline )
 {
     println(this.getBinding().variables)
+    println(this.getBinding().properties)
     println(steps.class.methods.collect { it.name })
     new DockerAgent( image ).execute( this, pipeline )
 }

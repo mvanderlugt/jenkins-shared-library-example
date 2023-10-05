@@ -1,4 +1,4 @@
-package us.vanderlugt.example.jenkins.library
+package us.vanderlugt.example.jenkins.library.gradle
 
 class IntegrationTestGradleStage
 {

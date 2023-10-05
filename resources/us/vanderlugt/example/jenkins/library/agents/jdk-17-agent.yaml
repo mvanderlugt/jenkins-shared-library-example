@@ -1,0 +1,69 @@
+kind: Pod
+metadata:
+  name: jdk-17-agent
+spec:
+  containers:
+    - env:
+        - name: "DOCKER_TLS_CERTDIR"
+          value: ""
+      image: 571037294294.dkr.ecr.us-west-2.amazonaws.com/infra_images/dind:23.0.1-dind-r1
+      imagePullPolicy: "IfNotPresent"
+      name: "dind"
+      resources:
+        limits:
+          memory: "4Gi"
+        requests:
+          cpu: .2
+          memory: "1Gi"
+      readinessProbe:
+        exec:
+          command:
+            - docker
+            - info
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      securityContext:
+        privileged: true
+        runAsGroup: 1000
+      tty: false
+      volumeMounts:
+        - name: var-run
+          mountPath: /var/run
+    - image: "amazon/aws-cli:2.4.19"
+      imagePullPolicy: "IfNotPresent"
+      name: "awscli"
+      command:
+        - sleep
+      args:
+        - "9999999"
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      resources:
+        limits:
+          memory: "512Mi"
+        requests:
+          cpu: "250m"
+          memory: "256Mi"
+      tty: false
+    - name: jdk
+      image: 571037294294.dkr.ecr.us-west-2.amazonaws.com/infra_images/jdk-17:v17.0.5-r3
+      imagePullPolicy: IfNotPresent
+      command:
+        - sleep
+      args:
+        - "9999999"
+      resources:
+        limits:
+          memory: "8Gi"
+        requests:
+          cpu: "3"
+          memory: "6Gi"
+      volumeMounts:
+        - name: var-run
+          mountPath: /var/run
+  terminationGracePeriodSeconds: 5
+  restartPolicy: Never
+  volumes:
+    - name: var-run
+      emptyDir: {}

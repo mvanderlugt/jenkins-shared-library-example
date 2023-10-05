@@ -1,5 +1,5 @@
-import us.vanderlugt.example.jenkins.library.BuildGradleStage
-import us.vanderlugt.example.jenkins.library.IntegrationTestGradleStage
+import us.vanderlugt.example.jenkins.library.gradle.BuildGradleStage
+import us.vanderlugt.example.jenkins.library.gradle.IntegrationTestGradleStage
 
 def build( String name = "Build",
     List<String> tasks = ["clean", "build"],

@@ -1,7 +1,7 @@
 import us.vanderlugt.example.jenkins.library.agents.DockerAgent
 import us.vanderlugt.example.jenkins.library.agents.KubernetesAgent
 
-def any(Closure pipeline)
+def node(Closure pipeline)
 {
     node pipeline
 }

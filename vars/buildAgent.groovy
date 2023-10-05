@@ -21,7 +21,7 @@ def docker( String image, Closure pipeline )
 
 def kubernetes( String buildProfile, Closure pipeline )
 {
-    podSpec = readYaml( libraryResource( "us/vanderlugt/example/jenkins/library/agents/${buildProfile}-agent.yaml" ) )
+    def podSpec = readYaml( libraryResource( "us/vanderlugt/example/jenkins/library/agents/${buildProfile}-agent.yaml" ) )
     podTemplate( cloud = "kubernetes",
         namespace = "jenkins-agents",
         defaultContainer = "jdk",

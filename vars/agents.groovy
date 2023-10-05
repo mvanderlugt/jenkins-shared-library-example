@@ -1,9 +1,9 @@
 import us.vanderlugt.example.jenkins.library.agents.DockerAgent
 import us.vanderlugt.example.jenkins.library.agents.KubernetesAgent
 
-def any()
+def any(Closure pipeline)
 {
-    agent any
+    node pipeline
 }
 
 def docker( String image )

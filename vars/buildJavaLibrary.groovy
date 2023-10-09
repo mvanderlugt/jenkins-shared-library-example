@@ -1,14 +1,17 @@
-build.pipeline {
-    buildAgent.anyAvailable()
 
-    versionControl.checkout()
+def call(Map pipelineParams) {
+    build.pipeline {
+        buildAgent.anyAvailable()
 
-    gradleStages.build()
+        versionControl.checkout()
 
-    if( pipelineRules.isDeploymentPipeline() )
-    {
-        deployment.webhook()
+        gradleStages.build()
+
+        if( pipelineRules.isDeploymentPipeline() )
+        {
+            deployment.webhook()
 
 //        gradleStages.integrationTest()
+        }
     }
 }

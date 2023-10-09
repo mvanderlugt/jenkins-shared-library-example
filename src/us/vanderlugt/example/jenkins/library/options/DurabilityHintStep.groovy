@@ -1,5 +1,6 @@
 package us.vanderlugt.example.jenkins.library.options
 
+import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
 import us.vanderlugt.example.jenkins.library.checks.PipelineCheck
 import us.vanderlugt.example.jenkins.library.pipeline.PipelineStep
 
@@ -12,7 +13,7 @@ class DurabilityHintStep implements PipelineStep {
 
     @Override
     PipelineCheck getCheck() {
-        return null
+        return NoOpCheck.INSTANCE
     }
 
     @Override

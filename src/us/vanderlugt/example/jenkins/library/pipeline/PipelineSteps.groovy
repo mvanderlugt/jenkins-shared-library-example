@@ -1,5 +1,6 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
+import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
 import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck.Conclusion
 import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck.Status
 
@@ -22,6 +23,11 @@ class PipelineSteps implements PipelineStep {
 
     void add(PipelineStep step) {
         this.steps.add(step)
+    }
+
+    @Override
+    PipelineCheck getCheck() {
+        return NoOpCheck.INSTANCE
     }
 
     @Override

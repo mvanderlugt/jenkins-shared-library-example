@@ -34,7 +34,7 @@ class PipelineStage implements PipelineStep {
     }
 
     @Override
-    void before(Object script) {
+    void before(script) {
 
     }
 
@@ -44,23 +44,25 @@ class PipelineStage implements PipelineStep {
     }
 
     @Override
-    void execute(Object script) {
-        if (agent != null) {
-            agent.execute(script) {
+    void execute(script) {
+        script.stage(name) {
+            if (agent != null) {
+                agent.execute(script) {
+                    steps.execute(script)
+                }
+            } else {
                 steps.execute(script)
             }
-        } else {
-            steps.execute(script)
         }
     }
 
     @Override
-    void after(Object script) {
+    void after(script) {
 
     }
 
     @Override
-    void onFailure(Object script, Exception exception) {
+    void onFailure(script, Exception exception) {
         throw exception
     }
 }

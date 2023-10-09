@@ -1,7 +1,5 @@
 package us.vanderlugt.example.jenkins.library.checks
 
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck
-
 class SimpleCheck implements PipelineCheck {
     private String title
     private String name

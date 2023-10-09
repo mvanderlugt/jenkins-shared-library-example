@@ -1,7 +1,7 @@
 package us.vanderlugt.example.jenkins.library.gradle
 
 import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck
+import us.vanderlugt.example.jenkins.library.checks.PipelineCheck
 import us.vanderlugt.example.jenkins.library.pipeline.PipelineStep
 
 class IntegrationTestGradleStep implements PipelineStep {

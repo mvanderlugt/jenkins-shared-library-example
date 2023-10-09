@@ -1,5 +1,7 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
+import us.vanderlugt.example.jenkins.library.checks.PipelineCheck
+
 interface PipelineStep extends Serializable {
     PipelineCheck getCheck()
 

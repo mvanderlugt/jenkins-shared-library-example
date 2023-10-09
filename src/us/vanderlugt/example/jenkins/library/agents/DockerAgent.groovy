@@ -1,7 +1,5 @@
 package us.vanderlugt.example.jenkins.library.agents
 
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineAgent
-
 class DockerAgent implements PipelineAgent {
     private String image
 

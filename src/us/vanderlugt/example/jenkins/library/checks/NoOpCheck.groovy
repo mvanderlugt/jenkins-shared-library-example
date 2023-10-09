@@ -1,7 +1,5 @@
 package us.vanderlugt.example.jenkins.library.checks
 
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck
-
 class NoOpCheck implements PipelineCheck {
     public static final PipelineCheck INSTANCE = new NoOpCheck()
 

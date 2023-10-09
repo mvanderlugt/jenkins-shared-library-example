@@ -1,7 +1,5 @@
 package us.vanderlugt.example.jenkins.library.agents
 
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineAgent
-
 class KubernetesAgent implements PipelineAgent {
     private String cloud = "kubernetes"
     private String namespace = "jenkins-agents"

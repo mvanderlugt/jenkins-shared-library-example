@@ -1,8 +1,9 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
 import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck.Conclusion
-import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck.Status
+import us.vanderlugt.example.jenkins.library.checks.Conclusion
+import us.vanderlugt.example.jenkins.library.checks.PipelineCheck
+import us.vanderlugt.example.jenkins.library.checks.Status
 
 class PipelineSteps implements PipelineStep {
     private final List<PipelineStep> steps = new LinkedList<PipelineStep>()

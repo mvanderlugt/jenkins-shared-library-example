@@ -1,5 +1,7 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
+import us.vanderlugt.example.jenkins.library.agents.PipelineAgent
+
 import java.time.Duration
 import java.time.temporal.ChronoUnit
 

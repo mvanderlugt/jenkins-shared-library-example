@@ -1,5 +1,6 @@
 package us.vanderlugt.example.jenkins.library
 
+import us.vanderlugt.example.jenkins.library.agents.PipelineAgent
 import us.vanderlugt.example.jenkins.library.pipeline.*
 
 import java.time.Duration

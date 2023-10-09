@@ -1,5 +1,7 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
+import us.vanderlugt.example.jenkins.library.agents.PipelineAgent
+
 class PipelineStage implements PipelineStep {
     private final String name
     private PipelineAgent agent

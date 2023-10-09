@@ -1,12 +1,10 @@
 package us.vanderlugt.example.jenkins.library.scm
 
-import us.vanderlugt.example.jenkins.library.PipelineStep
+import us.vanderlugt.example.jenkins.library.pipeline.PipelineStep
 
-class CheckoutStep implements PipelineStep
-{
+class CheckoutStep implements PipelineStep {
     @Override
-    void execute( script )
-    {
+    void execute(script) {
         script.checkout script.scm
     }
 }

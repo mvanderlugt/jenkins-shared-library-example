@@ -66,4 +66,4 @@ spec:
   restartPolicy: Never
   volumes:
     - name: var-run
-      emptyDir: {}
+      emptyDir: { }

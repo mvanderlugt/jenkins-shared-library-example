@@ -1,7 +1,8 @@
-import us.vanderlugt.example.jenkins.library.Pipeline
-import us.vanderlugt.example.jenkins.library.deployment.WebhookDeployment
+import us.vanderlugt.example.jenkins.library.deployment.WebhookDeploymentStep
 
-def webhook()
-{
-    Pipeline.addStep( new WebhookDeployment() )
+import static us.vanderlugt.example.jenkins.library.PipelineManager.addStage
+import static us.vanderlugt.example.jenkins.library.pipeline.PipelineSteps.of
+
+def webhook() {
+    addStage("Deployment", of(new WebhookDeploymentStep()))
 }

@@ -1,8 +1,14 @@
-import us.vanderlugt.example.jenkins.library.Pipeline
+import us.vanderlugt.example.jenkins.library.PipelineManager
 
-def pipeline( Closure pipelineDefinition )
-{
-    Pipeline.initialize( this )
+import java.time.Duration
+import java.time.temporal.ChronoUnit
+
+def pipeline(Closure pipelineDefinition) {
+    PipelineManager.initialize(this)
     pipelineDefinition()
-    Pipeline.execute()
+    PipelineManager.execute()
+}
+
+def timeout(int time = 60, ChronoUnit unit = ChronoUnit.MINUTES) {
+    PipelineManager.setTimeout(Duration.of(60, unit))
 }

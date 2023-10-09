@@ -1,17 +1,14 @@
-import us.vanderlugt.example.jenkins.library.Pipeline
-import us.vanderlugt.example.jenkins.library.gradle.BuildGradleStage
-import us.vanderlugt.example.jenkins.library.gradle.IntegrationTestGradleStage
+import us.vanderlugt.example.jenkins.library.gradle.BuildGradleStep
+import us.vanderlugt.example.jenkins.library.gradle.IntegrationTestGradleStep
+import static us.vanderlugt.example.jenkins.library.PipelineManager.addStage
+import static us.vanderlugt.example.jenkins.library.pipeline.PipelineSteps.of
 
-def build( String name = "Build",
-    List<String> tasks = ["clean", "build"],
-    boolean useWrapper = true )
-{
-    Pipeline.addStep( new BuildGradleStage( name, tasks, useWrapper ) )
+def build(List<String> tasks = ["clean", "build"],
+          boolean useWrapper = true) {
+    addStage("Build", of(new BuildGradleStep(tasks, useWrapper)))
 }
 
-def integrationTest( String name = "Integration Test",
-    List<String> tasks = ["integrationTest"],
-    boolean useWrapper = true )
-{
-    Pipeline.addStep( new IntegrationTestGradleStage( name, tasks, useWrapper ) )
+def integrationTest(List<String> tasks = ["integrationTest"],
+                    boolean useWrapper = true) {
+    addStage("Integration Test", of(new IntegrationTestGradleStep(tasks, useWrapper)))
 }

@@ -3,6 +3,8 @@ def call(Map pipelineParams) {
     build.pipeline {
         buildAgent.anyAvailable()
 
+        build.durabilityHint("PERFORMANCE_OPTIMIZED")
+
         versionControl.checkout()
 
         gradleStages.build()

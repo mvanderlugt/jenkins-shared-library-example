@@ -1,6 +1,7 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
 import us.vanderlugt.example.jenkins.library.agents.PipelineAgent
+import us.vanderlugt.example.jenkins.library.checks.PipelineCheck
 
 class PipelineStage implements PipelineStep {
     private final String name
@@ -27,13 +28,22 @@ class PipelineStage implements PipelineStep {
     }
 
     @Override
+    PipelineCheck getCheck() {
+        return null
+    }
+
+    @Override
+    void before(Object script) {
+
+    }
+
+    @Override
     void initialize(script) {
         steps.initialize(script)
     }
 
     @Override
     void execute(Object script) {
-
         if (agent != null) {
             agent.execute(script) {
                 steps.execute(script)
@@ -41,5 +51,15 @@ class PipelineStage implements PipelineStep {
         } else {
             steps.execute(script)
         }
+    }
+
+    @Override
+    void after(Object script) {
+
+    }
+
+    @Override
+    void onFailure(Object script, Exception exception) {
+        throw exception
     }
 }

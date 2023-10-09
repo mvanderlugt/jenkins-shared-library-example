@@ -1,6 +1,7 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
 import us.vanderlugt.example.jenkins.library.agents.PipelineAgent
+import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
 import us.vanderlugt.example.jenkins.library.checks.PipelineCheck
 
 class PipelineStage implements PipelineStep {
@@ -29,7 +30,7 @@ class PipelineStage implements PipelineStep {
 
     @Override
     PipelineCheck getCheck() {
-        return null
+        return NoOpCheck.INSTANCE
     }
 
     @Override

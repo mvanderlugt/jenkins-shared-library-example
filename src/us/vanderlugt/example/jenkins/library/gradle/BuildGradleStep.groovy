@@ -1,5 +1,6 @@
 package us.vanderlugt.example.jenkins.library.gradle
 
+import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
 import us.vanderlugt.example.jenkins.library.checks.SimpleCheck
 import us.vanderlugt.example.jenkins.library.pipeline.PipelineCheck
 import us.vanderlugt.example.jenkins.library.pipeline.PipelineStep
@@ -16,6 +17,16 @@ class BuildGradleStep implements PipelineStep {
     @Override
     PipelineCheck getCheck() {
         return check
+    }
+
+    @Override
+    void initialize(script) {
+
+    }
+
+    @Override
+    void before(script) {
+
     }
 
     @Override
@@ -43,5 +54,10 @@ class BuildGradleStep implements PipelineStep {
                 sourceInclusionPattern: "**/*.kt",
                 exclusionPattern: "src/test"
         )
+    }
+
+    @Override
+    void onFailure(script, Exception exception) {
+        throw exception // todo should we eat this and exit gracefully `script.error(exception.message)`
     }
 }

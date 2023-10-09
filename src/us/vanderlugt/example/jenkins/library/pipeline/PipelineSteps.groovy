@@ -34,10 +34,25 @@ class PipelineSteps implements PipelineStep {
     }
 
     @Override
+    void before(script) {
+
+    }
+
+    @Override
     void execute(script) {
         for (PipelineStep step : steps) {
             executeStep(script, step)
         }
+    }
+
+    @Override
+    void after(script) {
+
+    }
+
+    @Override
+    void onFailure(script, Exception exception) {
+        throw exception
     }
 
     private static void executeStep(script, PipelineStep step) {

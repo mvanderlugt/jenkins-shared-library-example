@@ -1,27 +1,15 @@
 package us.vanderlugt.example.jenkins.library.pipeline
 
-import us.vanderlugt.example.jenkins.library.checks.NoOpCheck
-
 interface PipelineStep extends Serializable {
-    default PipelineCheck getCheck() {
-        return NoOpCheck.INSTANCE
-    }
+    PipelineCheck getCheck()
 
-    default void initialize(script) {
+    void initialize(script)
 
-    }
-
-    default void before(script) {
-
-    }
+    void before(script)
 
     void execute(script)
 
-    default void after(script) {
+    void after(script)
 
-    }
-
-    default void onFailure(script, Exception exception) {
-        throw exception // todo should we eat this and exit gracefully `script.error(exception.message)`
-    }
+    void onFailure(script, Exception exception)
 }

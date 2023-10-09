@@ -29,7 +29,7 @@ class DurabilityHintStep implements PipelineStep {
     @Override
     void execute(script) {
         script.properties([
-                script.durabilityHint(durability)
+                script.durabilityHint(hint: durability)
         ])
     }
 
